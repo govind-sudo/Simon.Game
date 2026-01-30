@@ -1,0 +1,121 @@
+/* 1. Base Setup - Prevents scrolling and centers everything */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly; /* Evenly spaces H1, H2, and Grid */
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    overflow: hidden;
+    touch-action: manipulation;
+    padding: 10px;
+}
+
+/* 2. Responsive Typography */
+h1 {
+    font-size: clamp(1.5rem, 7vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: clamp(0.85rem, 4vw, 1.1rem);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    max-width: 90vw;
+}
+
+/* 3. The Responsive Grid */
+.outer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(10px, 4vw, 25px);
+    padding: clamp(15px, 5vw, 30px);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    
+    /* This makes the grid shrink to fit smaller screens */
+    width: 95vw;
+    max-width: 400px; 
+    /* Ensures it doesn't get too tall on long screens */
+    max-height: 60vh; 
+}
+
+/* 4. The Buttons */
+.color {
+    aspect-ratio: 1 / 1; 
+    width: 100%;
+    border-radius: clamp(15px, 4vw, 25px);
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 5. Device Specific Tweaks */
+
+/* For very small phones */
+@media (max-width: 320px) {
+    .outer {
+        gap: 10px;
+        padding: 10px;
+    }
+}
+
+/* For Landscape Mode on mobile */
+@media (max-height: 500px) {
+    body {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    h1 { width: 100%; font-size: 1.2rem; }
+    .outer { width: 250px; }
+}
+
+
+/* 1. Define the colors once at the top */
+:root {
+    --red: rgba(225, 49, 49, 0.6);
+    --blue: rgba(53, 167, 114, 0.6);
+    --yellow: rgba(187, 187, 62, 0.6);
+    --navy: rgba(60, 60, 188, 0.6);
+}
+
+/* 2. Assign the colors to the IDs */
+#red    { background-color: var(--red);    box-shadow: 0 0 15px rgba(225, 49, 49, 0.3); }
+#blue   { background-color: var(--blue);   box-shadow: 0 0 15px rgba(53, 167, 114, 0.3); }
+#yellow { background-color: var(--yellow); box-shadow: 0 0 15px rgba(187, 187, 62, 0.3); }
+#navy   { background-color: var(--navy);   box-shadow: 0 0 15px rgba(60, 60, 188, 0.3); }
+
+/* 3. The Flash classes - use !important to override the background-color */
+.flash {
+    background-color: white !important;
+    box-shadow: 0 0 50px white !important;
+    transform: scale(1.08);
+}
+
+.userflash {
+    background-color: #00ff88 !important; /* Neon Green */
+    box-shadow: 0 0 50px #00ff88 !important;
+    transform: scale(1.08);
+}
